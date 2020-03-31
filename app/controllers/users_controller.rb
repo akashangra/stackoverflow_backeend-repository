@@ -12,6 +12,18 @@ class UsersController < ApplicationController
 
   end
 
+  def create_question
+    user = User.find_by(id: params[:id])
+    if user
+      question = user.questions.build(title:params[:title],description:params[:description])
+      if question.save
+        puts "question created"
+      else
+        puts "question not created"
+      end
+    end
+  end
+
   def login
     puts "in login"
 
